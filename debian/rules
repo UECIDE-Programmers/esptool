@@ -4,10 +4,9 @@
 	dh $@
 
 override_dh_auto_build:
-	mkdir -p tmp
-    wget -c https://raw.githubusercontent.com/esp8266/Arduino/master/package/package_esp8266com_index.template.json
+	wget -c https://raw.githubusercontent.com/esp8266/Arduino/master/package/package_esp8266com_index.template.json
 	grep '"url":' package_esp8266com_index.template.json  | grep esptool | awk '{print $$2}' | cut -f2 -d'"' | sort | uniq | wget -i - -c
-	unzip `ls esptool-*-win32.zip  | sort -r | head -n 1`
+	unzip -o `ls esptool-*-win32.zip  | sort -r | head -n 1`
 	tar -zxf `ls esptool-*-linux32.tar.gz  | sort -r | head -n 1`
 	tar -zxf `ls esptool-*-linux64.tar.gz  | sort -r | head -n 1`
 	tar -zxf `ls esptool-*-osx.tar.gz  | sort -r | head -n 1`

@@ -1,5 +1,5 @@
 esptool-0.4.8-linux32/esptool programmers/esptool/tools/linux32
 esptool-0.4.8-linux64/esptool programmers/esptool/tools/linux64
-esptool-0.4.8-win32/esptool programmers/esptool/tools/windows
+esptool-0.4.8-win32/esptool.exe programmers/esptool/tools/windows
 esptool-0.4.8-osx/esptool programmers/esptool/tools/macosx
 
