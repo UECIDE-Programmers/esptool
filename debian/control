@@ -1,0 +1,15 @@
+Source: esptool
+Section: programmers
+XBSC-Family: esp8266
+Priority: extra
+Maintainer: Matt Jenkins <matt@majenko.co.uk>
+XBSC-TieCore: esp8266
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+
+Package: esptool
+Section: programmers
+Architecture: all
+XBSC-Group: ESP8266
+Description: ESPTool the ESP8266 Programmer
+
