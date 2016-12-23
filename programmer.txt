@@ -1,5 +1,5 @@
 name=esptool
-description=ESPTool for ESP6288
+description=ESPTool for ESP8266
 family=esp8266
 group=ESP8266
 
