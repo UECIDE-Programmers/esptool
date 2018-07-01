@@ -1,15 +1,17 @@
 name=esptool
-description=ESPTool for ESP8266
-family=esp8266
+description=ESPTool for ESP8266 / ESP32
+family=esp8266,esp32
 #group=ESP8266
+
+esp.chip=esp8266
 
 programmer.method=script
 programmer.script.0=__builtin_bullet::Uploading sketch...
 programmer.script.1=__builtin_lock_port::${port}
-programmer.script.2.linux_amd64=${programmer:root}/tools/linux64/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cf::${build.path}/${filename}.bin
-programmer.script.2.linux_i386=${programmer:root}/tools/linux32/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cf::${build.path}/${filename}.bin
-programmer.script.2.windows=${programmer:root}/tools/windows/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cf::${build.path}/${filename}.bin
-programmer.script.2.macosx=${programmer:root}/tools/macosx/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cf::${build.path}/${filename}.bin
+programmer.script.2.linux_amd64=${programmer:root}/tools/linux64/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
+programmer.script.2.linux_i386=${programmer:root}/tools/linux32/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
+programmer.script.2.windows=${programmer:root}/tools/windows/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
+programmer.script.2.macosx=${programmer:root}/tools/macosx/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
 programmer.script.2=__builtin_error::Sorry, ESPTool isn't supported on your platform.
 programmer.script.3=__builtin_unlock_port::${port}
 programmer.script.4=__builtin_bullet::All done.
