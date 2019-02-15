@@ -1,6 +1,6 @@
 name=esptool
 description=ESPTool for ESP8266 / ESP32
-family=esp8266,esp32
+family=esp8266::esp32
 #group=ESP8266
 
 esp.chip=esp8266
