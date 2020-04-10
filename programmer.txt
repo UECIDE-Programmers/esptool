@@ -1,20 +1,12 @@
 name=esptool
-description=ESPTool for ESP8266 / ESP32
-family=esp8266::esp32
-#group=ESP8266
+description=ESPTool for ESP8266
+family=esp8266
 
-esp.chip=esp8266
-
+programmer.chip=esp8266
+programmer.interpreter=${tool:python,run}
+programmer.params=--chip::${programmer.chip}::--port::${port}::--baud::${upload.speed}::--before::default_reset::--after::soft_reset::write_flash::-z::--flash_mode::${build.flash_mode}::--flash_freq::${build.flash_freq}::--flash_size::detect::0xe000::${core.root}/partitions/boot_app0.bin::0x1000::${core.root}/sdk/bin/bootloader_${build.flash_mode}_${build.flash_freq}.bin::0x10000::${build.path}/${filename}.bin::0x8000::${build.path}/${filename}.partitions.bin
 programmer.method=script
-programmer.script.0=__builtin_bullet::Uploading sketch...
-programmer.script.1=__builtin_lock_port::${port}
-programmer.script.2.linux_amd64=${programmer:root}/tools/linux64/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
-programmer.script.2.linux_i386=${programmer:root}/tools/linux32/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
-programmer.script.2.windows=${programmer:root}/tools/windows/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
-programmer.script.2.macosx=${programmer:root}/tools/macosx/esptool::-cd::${if:${option:ResetMethod.upload.resetmethod}=ERR,${upload.resetmethod},${option:ResetMethod.upload.resetmethod}}::-cb::${option:UploadSpeed.upload.speed}::-cp::${port}::-ca::0x00000::-cc::${esp.chip}::-cf::${build.path}/${filename}.bin
-programmer.script.2=__builtin_error::Sorry, ESPTool isn't supported on your platform.
-programmer.script.3=__builtin_unlock_port::${port}
-programmer.script.4=__builtin_bullet::All done.
+programmer.run=${programmer:esptool,programmer.interpreter}::${programmer:esptool,root}/esptool.py
+programmer.script.0=${programmer:esptool,programmer.run}::${programmer:esptool,root}/esptool.py::${programmer.params}
 
-programmer.script.fail.0=__builtin_unlock_port::${port}
-programmer.script.fail.1=__builtin_error::Upload failed!
+icon=espressif.png

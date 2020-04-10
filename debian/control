@@ -12,5 +12,5 @@ Section: main
 Architecture: all
 XBSC-Group: Programmers
 XBSC-SubGroup: ESP8266
-Description: ESPTool the ESP8266 Programmer
+Description: ESPTool for ESP8266 
 
