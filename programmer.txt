@@ -4,9 +4,9 @@ family=esp8266
 
 programmer.chip=esp8266
 programmer.interpreter=${tool:python,run}
-programmer.params=--chip::${programmer.chip}::--port::${port}::--baud::${upload.speed}::--before::default_reset::--after::soft_reset::write_flash::-z::--flash_mode::${build.flash_mode}::--flash_freq::${build.flash_freq}::--flash_size::detect::0xe000::${core.root}/partitions/boot_app0.bin::0x1000::${core.root}/sdk/bin/bootloader_${build.flash_mode}_${build.flash_freq}.bin::0x10000::${build.path}/${filename}.bin::0x8000::${build.path}/${filename}.partitions.bin
+programmer.params=--chip::${programmer.chip}::--port::${port}::--baud::${upload.speed}::--before::default_reset::--after::soft_reset::write_flash::--flash_mode::${build.flash_mode}::--flash_freq::${build.flash_freq}m::--flash_size::detect::0x0000::${build.path}/${filename}.bin
 programmer.method=script
 programmer.run=${programmer:esptool,programmer.interpreter}::${programmer:esptool,root}/esptool.py
-programmer.script.0=${programmer:esptool,programmer.run}::${programmer:esptool,root}/esptool.py::${programmer.params}
+programmer.script.0=${programmer:esptool,programmer.run}::${programmer.params}
 
 icon=espressif.png
