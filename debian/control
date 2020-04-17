@@ -10,6 +10,7 @@ Standards-Version: 3.9.4
 Package: esptool
 Section: main
 Architecture: all
+Depends: python
 XBSC-Group: Programmers
 XBSC-SubGroup: ESP8266
 Description: ESPTool for ESP8266 
